@@ -1,0 +1,102 @@
+Detailed Plan for CA Student Study Website and App - "Unfiltered CA"
+
+Information Gathered:
+- No existing code for requested features found in the current codebase.
+- Project uses Next.js with Tailwind CSS.
+- Supabase will be used for authentication, feedback form, resource management, and saving individual student data.
+- Features to implement:
+  1. Pomodoro timer tool for students to set study timers.
+  2. Study room with create/join room by ID, voice chat, chat with PDF/photo sharing.
+  3. Study planner to plan subjects and analyze study time per subject.
+  4. Doubt section for posting and viewing doubts.
+  5. Home page with About Us text and feedback form integrated with Supabase.
+  6. Resources section with study material, mock tests, YouTube videos; admin can add PDFs or links.
+- User authentication and saving individual student data is required.
+
+Plan:
+
+1. Project Structure and Pages:
+- src/app/page.tsx: Home page with About Us and feedback form.
+- src/app/resources/page.tsx: Resources section with admin add functionality.
+- src/app/study-room/page.tsx: Study room with create/join room, voice chat, chat with file sharing.
+- src/app/planner/page.tsx: Study planner with subject planning and analytics.
+- src/app/doubt/page.tsx: Doubt section for posting and viewing doubts.
+- src/app/layout.tsx: Layout with navigation menu for all sections.
+
+2. Components:
+- PomodoroTimer: Timer with start, pause, reset, and customizable duration.
+- StudyRoom components:
+  - Room creation and joining by ID.
+  - Voice chat using WebRTC or third-party service.
+  - Chat with file upload (PDF/photo).
+- StudyPlanner components:
+  - Subject planner input.
+  - Analytics charts (highest and lowest study subjects).
+- Doubt components:
+  - Doubt posting form.
+  - Doubt list with filtering.
+- FeedbackForm: Form integrated with Supabase to submit feedback.
+- ResourceManagement:
+  - Admin interface to add/edit/delete study materials, mock tests, YouTube links.
+  - Resource list display.
+
+3. Supabase Integration:
+- Setup Supabase client in src/lib/supabaseClient.ts.
+- Authentication for users (sign up, sign in).
+- Database tables:
+  - users (managed by Supabase auth).
+  - feedback (user_id, message, timestamp).
+  - resources (id, type, title, url/file, added_by, timestamp).
+  - doubts (id, user_id, question, answers, timestamp).
+  - study_planner (id, user_id, subject, planned_time, actual_time, timestamp).
+- Secure access rules to ensure users can only access their own data.
+
+4. Firebase + Firestore Integration for Chat:
+- Setup Firebase client in src/lib/firebaseClient.ts.
+- Use Firestore for real-time chat messages in study rooms.
+- Store chat messages with room_id, user_id, message, file_url, timestamp.
+- Implement chat UI components to interact with Firestore.
+
+5. Jitsi Meet Integration for Voice Chat:
+- Embed Jitsi Meet in study room page for voice communication.
+- Configure Jitsi Meet with room ID matching study room ID.
+- Provide UI controls for mute/unmute, leave call, etc.
+
+6. Styling and UI:
+- Use Tailwind CSS with black and white theme.
+- Use Google Fonts for typography.
+- Responsive design for desktop and mobile.
+- Clean, modern UI with appropriate whitespace and subtle animations.
+
+4. Styling and UI:
+- Use Tailwind CSS with black and white theme.
+- Use Google Fonts for typography.
+- Responsive design for desktop and mobile.
+- Clean, modern UI with appropriate whitespace and subtle animations.
+
+Dependent Files to be Edited/Created:
+- src/app/page.tsx
+- src/app/layout.tsx
+- src/app/resources/page.tsx
+- src/app/study-room/page.tsx
+- src/app/planner/page.tsx
+- src/app/doubt/page.tsx
+- src/components/PomodoroTimer.tsx
+- src/components/StudyRoom/*
+- src/components/StudyPlanner/*
+- src/components/Doubt/*
+- src/components/FeedbackForm.tsx
+- src/components/ResourceManagement/*
+- src/lib/supabaseClient.ts
+
+Follow-up Steps:
+- Confirm plan with user.
+- Setup Supabase project and environment variables.
+- Implement authentication and Supabase client.
+- Develop pages and components feature by feature.
+- Test real-time features and data saving.
+- Deploy and verify functionality.
+
+This plan ensures a modular, scalable, and maintainable codebase for the CA student study platform "Unfiltered CA".
+
+Please confirm if I can proceed with implementation based on this plan.
